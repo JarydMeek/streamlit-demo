@@ -1,0 +1,194 @@
+{
+  "timestamp": "2026-01-27T09:42:01.213987",
+  "data": [
+    {
+      "base_depth": "12-30\"",
+      "id": "ab96981b",
+      "open_lifts": "4/7",
+      "open_trails": "12/266",
+      "resort": "Bear Mountain",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "75\"",
+      "id": "de7db478",
+      "open_lifts": "8/10",
+      "open_trails": "101/122",
+      "resort": "Bear Valley",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "126\"",
+      "id": "2802f8ce",
+      "open_lifts": "2/8",
+      "open_trails": "34/343",
+      "resort": "Boreal Mountain Resort",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "20-50\"",
+      "id": "01b2567c",
+      "open_lifts": "8/10",
+      "open_trails": "71/711",
+      "resort": "Dodge Ridge",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "40\"",
+      "id": "129ba4a6",
+      "open_lifts": "8/8",
+      "open_trails": "n/a",
+      "resort": "Donner Ski Ranch",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "79\"",
+      "id": "3bd90d8c",
+      "open_lifts": "27/27",
+      "open_trails": "114/114",
+      "resort": "Heavenly",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "46\"",
+      "id": "93ecfae4",
+      "open_lifts": "7/7",
+      "open_trails": "42/421",
+      "resort": "June Mountain",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "73-83\"",
+      "id": "33325e00",
+      "open_lifts": "13/13",
+      "open_trails": "84/841",
+      "resort": "Kirkwood",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "103-180\"",
+      "id": "05a3d5b2",
+      "open_lifts": "23/24",
+      "open_trails": "177/178",
+      "resort": "Mammoth Mountain",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "20-24\"",
+      "id": "55c0ede9",
+      "open_lifts": "6/14",
+      "open_trails": "13/592",
+      "resort": "Mountain High",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "40\"",
+      "id": "b7a33303",
+      "open_lifts": "3/4",
+      "open_trails": "n/a",
+      "resort": "Mt. Baldy",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "104\"",
+      "id": "e20c3026",
+      "open_lifts": "6/6",
+      "open_trails": "44/441",
+      "resort": "Mt. Shasta Ski Park",
+      "snowfall24h": "5\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "60-103\"",
+      "id": "47e84c9b",
+      "open_lifts": "17/20",
+      "open_trails": "89/100",
+      "resort": "Northstar California",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "34-136\"",
+      "id": "36a82293",
+      "open_lifts": "34/36",
+      "open_trails": "224/270",
+      "resort": "Palisades Tahoe",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "55-105\"",
+      "id": "6e176ac6",
+      "open_lifts": "8/14",
+      "open_trails": "46/479",
+      "resort": "Sierra-at-Tahoe",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "70\"",
+      "id": "55e5651b",
+      "open_lifts": "9/11",
+      "open_trails": "35/546",
+      "resort": "Ski China Peak",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "12-48\"",
+      "id": "d0581f15",
+      "open_lifts": "6/10",
+      "open_trails": "12/333",
+      "resort": "Snow Summit",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "12-24\"",
+      "id": "933018b7",
+      "open_lifts": "6/9",
+      "open_trails": "12/323",
+      "resort": "Snow Valley",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "123\"",
+      "id": "4acd9134",
+      "open_lifts": "6/6",
+      "open_trails": "19/191",
+      "resort": "Soda Springs",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "73-131\"",
+      "id": "102b0b01",
+      "open_lifts": "11/12",
+      "open_trails": "103/105",
+      "resort": "Sugar Bowl Resort",
+      "snowfall24h": "0\"",
+      "state": "california"
+    },
+    {
+      "base_depth": "18\"",
+      "id": "a04cd689",
+      "open_lifts": "4/5",
+      "open_trails": "14/178",
+      "resort": "Tahoe Donner",
+      "snowfall24h": "0\"",
+      "state": "california"
+    }
+  ]
+}

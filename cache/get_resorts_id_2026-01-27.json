@@ -1,0 +1,1465 @@
+{
+  "timestamp": "2026-01-27T09:42:00.780453",
+  "data": [
+    {
+      "id": "cac67bef",
+      "resort": "Bolton Valley",
+      "state": "vermont"
+    },
+    {
+      "id": "4970541b",
+      "resort": "Bromley Mountain",
+      "state": "vermont"
+    },
+    {
+      "id": "3756df93",
+      "resort": "Burke Mountain",
+      "state": "vermont"
+    },
+    {
+      "id": "1143859b",
+      "resort": "Jay Peak",
+      "state": "vermont"
+    },
+    {
+      "id": "730c76d3",
+      "resort": "Killington Resort",
+      "state": "vermont"
+    },
+    {
+      "id": "6858b02e",
+      "resort": "Mad River Glen",
+      "state": "vermont"
+    },
+    {
+      "id": "8c44a6bd",
+      "resort": "Magic Mountain",
+      "state": "vermont"
+    },
+    {
+      "id": "48497a21",
+      "resort": "Mount Snow",
+      "state": "vermont"
+    },
+    {
+      "id": "bdccf433",
+      "resort": "Okemo Mountain Resort",
+      "state": "vermont"
+    },
+    {
+      "id": "62b0a1b3",
+      "resort": "Pico Mountain",
+      "state": "vermont"
+    },
+    {
+      "id": "c5eafc78",
+      "resort": "Saskadena Six",
+      "state": "vermont"
+    },
+    {
+      "id": "2c795c45",
+      "resort": "Smugglers' Notch Resort",
+      "state": "vermont"
+    },
+    {
+      "id": "de58e28c",
+      "resort": "Stowe Mountain",
+      "state": "vermont"
+    },
+    {
+      "id": "0361646e",
+      "resort": "Stratton Mountain",
+      "state": "vermont"
+    },
+    {
+      "id": "ca142c2f",
+      "resort": "Sugarbush",
+      "state": "vermont"
+    },
+    {
+      "id": "4baa170f",
+      "resort": "Arapahoe Basin Ski Area",
+      "state": "colorado"
+    },
+    {
+      "id": "d569e475",
+      "resort": "Aspen Snowmass",
+      "state": "colorado"
+    },
+    {
+      "id": "4579992c",
+      "resort": "Beaver Creek",
+      "state": "colorado"
+    },
+    {
+      "id": "24980f7e",
+      "resort": "Breckenridge",
+      "state": "colorado"
+    },
+    {
+      "id": "1561da77",
+      "resort": "Cooper",
+      "state": "colorado"
+    },
+    {
+      "id": "d970f57b",
+      "resort": "Copper Mountain",
+      "state": "colorado"
+    },
+    {
+      "id": "71933ac8",
+      "resort": "Crested Butte Mountain Resort",
+      "state": "colorado"
+    },
+    {
+      "id": "20649c4b",
+      "resort": "Eldora Mountain Resort",
+      "state": "colorado"
+    },
+    {
+      "id": "7f5b8740",
+      "resort": "Howelsen Hill",
+      "state": "colorado"
+    },
+    {
+      "id": "1ce2096c",
+      "resort": "Keystone",
+      "state": "colorado"
+    },
+    {
+      "id": "8f68e27a",
+      "resort": "Loveland Ski Area",
+      "state": "colorado"
+    },
+    {
+      "id": "41689ac7",
+      "resort": "Monarch Mountain",
+      "state": "colorado"
+    },
+    {
+      "id": "9350f06e",
+      "resort": "Powderhorn",
+      "state": "colorado"
+    },
+    {
+      "id": "6ff4735b",
+      "resort": "Purgatory",
+      "state": "colorado"
+    },
+    {
+      "id": "a4d6579e",
+      "resort": "Silverton Mountain",
+      "state": "colorado"
+    },
+    {
+      "id": "61b69619",
+      "resort": "Ski Granby Ranch",
+      "state": "colorado"
+    },
+    {
+      "id": "fb79d359",
+      "resort": "Steamboat",
+      "state": "colorado"
+    },
+    {
+      "id": "bd80c479",
+      "resort": "Sunlight Mountain Resort",
+      "state": "colorado"
+    },
+    {
+      "id": "65ef052c",
+      "resort": "Telluride",
+      "state": "colorado"
+    },
+    {
+      "id": "f90d2dd9",
+      "resort": "Vail",
+      "state": "colorado"
+    },
+    {
+      "id": "8589c2ad",
+      "resort": "Winter Park",
+      "state": "colorado"
+    },
+    {
+      "id": "64ece19d",
+      "resort": "Wolf Creek Ski Area",
+      "state": "colorado"
+    },
+    {
+      "id": "7f76aa77",
+      "resort": "Echo Mountain",
+      "state": "colorado"
+    },
+    {
+      "id": "cdb5121e",
+      "resort": "Beaver Mountain",
+      "state": "utah"
+    },
+    {
+      "id": "9f747245",
+      "resort": "Brian Head Resort",
+      "state": "utah"
+    },
+    {
+      "id": "8281becb",
+      "resort": "Brighton Resort",
+      "state": "utah"
+    },
+    {
+      "id": "e1fe9236",
+      "resort": "Deer Valley Resort",
+      "state": "utah"
+    },
+    {
+      "id": "8f133cfd",
+      "resort": "Eagle Point",
+      "state": "utah"
+    },
+    {
+      "id": "3447b91c",
+      "resort": "Nordic Valley Resort",
+      "state": "utah"
+    },
+    {
+      "id": "dd6be828",
+      "resort": "Park City",
+      "state": "utah"
+    },
+    {
+      "id": "6d0f0687",
+      "resort": "Powder Mountain",
+      "state": "utah"
+    },
+    {
+      "id": "380363ec",
+      "resort": "Snowbasin",
+      "state": "utah"
+    },
+    {
+      "id": "0f1aa628",
+      "resort": "Snowbird",
+      "state": "utah"
+    },
+    {
+      "id": "4e17d93c",
+      "resort": "Solitude Mountain Resort",
+      "state": "utah"
+    },
+    {
+      "id": "c6e3c4e8",
+      "resort": "Sundance",
+      "state": "utah"
+    },
+    {
+      "id": "ab96981b",
+      "resort": "Bear Mountain",
+      "state": "california"
+    },
+    {
+      "id": "de7db478",
+      "resort": "Bear Valley",
+      "state": "california"
+    },
+    {
+      "id": "2802f8ce",
+      "resort": "Boreal Mountain Resort",
+      "state": "california"
+    },
+    {
+      "id": "01b2567c",
+      "resort": "Dodge Ridge",
+      "state": "california"
+    },
+    {
+      "id": "129ba4a6",
+      "resort": "Donner Ski Ranch",
+      "state": "california"
+    },
+    {
+      "id": "3bd90d8c",
+      "resort": "Heavenly",
+      "state": "california"
+    },
+    {
+      "id": "93ecfae4",
+      "resort": "June Mountain",
+      "state": "california"
+    },
+    {
+      "id": "33325e00",
+      "resort": "Kirkwood",
+      "state": "california"
+    },
+    {
+      "id": "05a3d5b2",
+      "resort": "Mammoth Mountain",
+      "state": "california"
+    },
+    {
+      "id": "55c0ede9",
+      "resort": "Mountain High",
+      "state": "california"
+    },
+    {
+      "id": "b7a33303",
+      "resort": "Mt. Baldy",
+      "state": "california"
+    },
+    {
+      "id": "e20c3026",
+      "resort": "Mt. Shasta Ski Park",
+      "state": "california"
+    },
+    {
+      "id": "47e84c9b",
+      "resort": "Northstar California",
+      "state": "california"
+    },
+    {
+      "id": "36a82293",
+      "resort": "Palisades Tahoe",
+      "state": "california"
+    },
+    {
+      "id": "6e176ac6",
+      "resort": "Sierra-at-Tahoe",
+      "state": "california"
+    },
+    {
+      "id": "55e5651b",
+      "resort": "Ski China Peak",
+      "state": "california"
+    },
+    {
+      "id": "d0581f15",
+      "resort": "Snow Summit",
+      "state": "california"
+    },
+    {
+      "id": "933018b7",
+      "resort": "Snow Valley",
+      "state": "california"
+    },
+    {
+      "id": "4acd9134",
+      "resort": "Soda Springs",
+      "state": "california"
+    },
+    {
+      "id": "102b0b01",
+      "resort": "Sugar Bowl Resort",
+      "state": "california"
+    },
+    {
+      "id": "a04cd689",
+      "resort": "Tahoe Donner",
+      "state": "california"
+    },
+    {
+      "id": "f5b9b2a4",
+      "resort": "Attitash",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "7437e015",
+      "resort": "Black Mountain",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "e0d9bcdb",
+      "resort": "Bretton Woods",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "302777f5",
+      "resort": "Cannon Mountain",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "a2644b00",
+      "resort": "Cranmore Mountain Resort",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "b40da216",
+      "resort": "Crotched Mountain",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "52c76bc2",
+      "resort": "Dartmouth Skiway",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "77d88fd9",
+      "resort": "Gunstock",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "7392fd33",
+      "resort": "King Pine",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "132bc488",
+      "resort": "Loon Mountain",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "d65d6b84",
+      "resort": "Mount Sunapee",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "9e03edda",
+      "resort": "Pats Peak",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "5fb8e3be",
+      "resort": "Ragged Mountain Resort",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "6687b1fe",
+      "resort": "Tenney Mountain",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "696f9677",
+      "resort": "Waterville Valley",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "6b41c60f",
+      "resort": "Whaleback Mountain",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "e505921a",
+      "resort": "Wildcat Mountain",
+      "state": "new-hampshire"
+    },
+    {
+      "id": "5cb233e7",
+      "resort": "Big Moose Mountain",
+      "state": "maine"
+    },
+    {
+      "id": "4074068c",
+      "resort": "Black Mountain of Maine",
+      "state": "maine"
+    },
+    {
+      "id": "a37b79a3",
+      "resort": "Camden Snow Bowl",
+      "state": "maine"
+    },
+    {
+      "id": "c72f4b08",
+      "resort": "Lost Valley",
+      "state": "maine"
+    },
+    {
+      "id": "fdfa3347",
+      "resort": "Mt. Abram Ski Resort",
+      "state": "maine"
+    },
+    {
+      "id": "8ddaa5be",
+      "resort": "New Hermon Mountain",
+      "state": "maine"
+    },
+    {
+      "id": "1bafe711",
+      "resort": "Pleasant Mountain",
+      "state": "maine"
+    },
+    {
+      "id": "0678357b",
+      "resort": "Saddleback Inc.",
+      "state": "maine"
+    },
+    {
+      "id": "fe6f46d4",
+      "resort": "Sugarloaf",
+      "state": "maine"
+    },
+    {
+      "id": "5a0ea369",
+      "resort": "Sunday River",
+      "state": "maine"
+    },
+    {
+      "id": "26f71293",
+      "resort": "Mt. Jefferson",
+      "state": "maine"
+    },
+    {
+      "id": "8194f66c",
+      "resort": "Big Sky",
+      "state": "montana"
+    },
+    {
+      "id": "4b1be1cc",
+      "resort": "Blacktail Mountain Ski Area",
+      "state": "montana"
+    },
+    {
+      "id": "310b0cdd",
+      "resort": "Bridger Bowl",
+      "state": "montana"
+    },
+    {
+      "id": "ffde89c9",
+      "resort": "Discovery Ski Area",
+      "state": "montana"
+    },
+    {
+      "id": "9c9c3555",
+      "resort": "Great Divide",
+      "state": "montana"
+    },
+    {
+      "id": "734ada3d",
+      "resort": "Lost Trail - Powder Mtn",
+      "state": "montana"
+    },
+    {
+      "id": "64b8ad5b",
+      "resort": "Maverick Mountain",
+      "state": "montana"
+    },
+    {
+      "id": "67bc9177",
+      "resort": "Montana Snowbowl",
+      "state": "montana"
+    },
+    {
+      "id": "b72028e9",
+      "resort": "Red Lodge Mountain",
+      "state": "montana"
+    },
+    {
+      "id": "42fadb99",
+      "resort": "Showdown Montana",
+      "state": "montana"
+    },
+    {
+      "id": "beab8634",
+      "resort": "Teton Pass Ski Resort",
+      "state": "montana"
+    },
+    {
+      "id": "400572af",
+      "resort": "Whitefish Mountain Resort",
+      "state": "montana"
+    },
+    {
+      "id": "ee27239c",
+      "resort": "Bogus Basin",
+      "state": "idaho"
+    },
+    {
+      "id": "2bcc3242",
+      "resort": "Brundage Mountain Resort",
+      "state": "idaho"
+    },
+    {
+      "id": "39cc9271",
+      "resort": "Lookout Pass Ski Area",
+      "state": "idaho"
+    },
+    {
+      "id": "47007777",
+      "resort": "Magic Mountain Ski Area",
+      "state": "idaho"
+    },
+    {
+      "id": "94f6c57b",
+      "resort": "Pebble Creek Ski Area",
+      "state": "idaho"
+    },
+    {
+      "id": "9954a0a2",
+      "resort": "Pomerelle Mountain Resort",
+      "state": "idaho"
+    },
+    {
+      "id": "b535ffd9",
+      "resort": "Schweitzer",
+      "state": "idaho"
+    },
+    {
+      "id": "6afd00d3",
+      "resort": "Silver Mountain",
+      "state": "idaho"
+    },
+    {
+      "id": "68889a5b",
+      "resort": "Soldier Mountain Ski Area",
+      "state": "idaho"
+    },
+    {
+      "id": "c613f878",
+      "resort": "Sun Valley",
+      "state": "idaho"
+    },
+    {
+      "id": "b930a8fe",
+      "resort": "Tamarack Resort",
+      "state": "idaho"
+    },
+    {
+      "id": "39e4a8b0",
+      "resort": "Kelly Canyon Ski Area",
+      "state": "idaho"
+    },
+    {
+      "id": "25df2622",
+      "resort": "Grand Targhee Resort",
+      "state": "wyoming"
+    },
+    {
+      "id": "9f2f52c0",
+      "resort": "Hogadon Basin",
+      "state": "wyoming"
+    },
+    {
+      "id": "775ba5bc",
+      "resort": "Jackson Hole",
+      "state": "wyoming"
+    },
+    {
+      "id": "141f9b49",
+      "resort": "Meadowlark Ski Lodge",
+      "state": "wyoming"
+    },
+    {
+      "id": "c96ff3a8",
+      "resort": "Snow King Mountain",
+      "state": "wyoming"
+    },
+    {
+      "id": "35a0ce37",
+      "resort": "Snowy Range Ski & Recreation Area",
+      "state": "wyoming"
+    },
+    {
+      "id": "b36623ca",
+      "resort": "White Pine Ski Area",
+      "state": "wyoming"
+    },
+    {
+      "id": "7b40d87d",
+      "resort": "49 Degrees North",
+      "state": "washington"
+    },
+    {
+      "id": "604c9f23",
+      "resort": "Alpental",
+      "state": "washington"
+    },
+    {
+      "id": "4560646b",
+      "resort": "Bluewood",
+      "state": "washington"
+    },
+    {
+      "id": "f8c9a893",
+      "resort": "Crystal Mountain",
+      "state": "washington"
+    },
+    {
+      "id": "27839194",
+      "resort": "Mission Ridge",
+      "state": "washington"
+    },
+    {
+      "id": "768239fe",
+      "resort": "Mt. Baker",
+      "state": "washington"
+    },
+    {
+      "id": "3356f803",
+      "resort": "Mt. Spokane Ski and Snowboard Park",
+      "state": "washington"
+    },
+    {
+      "id": "0e51b6d3",
+      "resort": "Stevens Pass Resort",
+      "state": "washington"
+    },
+    {
+      "id": "c3a5232e",
+      "resort": "The Summit at Snoqualmie",
+      "state": "washington"
+    },
+    {
+      "id": "88bfeda0",
+      "resort": "White Pass",
+      "state": "washington"
+    },
+    {
+      "id": "56bddf8a",
+      "resort": "Anthony Lakes Mountain Resort",
+      "state": "oregon"
+    },
+    {
+      "id": "ef5053fd",
+      "resort": "Hoodoo Ski Area",
+      "state": "oregon"
+    },
+    {
+      "id": "da76f452",
+      "resort": "Mt. Ashland",
+      "state": "oregon"
+    },
+    {
+      "id": "e5b33a6f",
+      "resort": "Mt. Bachelor",
+      "state": "oregon"
+    },
+    {
+      "id": "27b73b30",
+      "resort": "Mt. Hood Meadows",
+      "state": "oregon"
+    },
+    {
+      "id": "e08ab681",
+      "resort": "Mt. Hood Skibowl",
+      "state": "oregon"
+    },
+    {
+      "id": "8c21911d",
+      "resort": "Timberline Lodge",
+      "state": "oregon"
+    },
+    {
+      "id": "2c5a0011",
+      "resort": "Willamette Pass",
+      "state": "oregon"
+    },
+    {
+      "id": "e403ad38",
+      "resort": "Cooper Spur",
+      "state": "oregon"
+    },
+    {
+      "id": "8e9adbd7",
+      "resort": "Spout Springs",
+      "state": "oregon"
+    },
+    {
+      "id": "e4b920b3",
+      "resort": "Belleayre",
+      "state": "new-york"
+    },
+    {
+      "id": "bfa0ebce",
+      "resort": "Brantling Ski Slopes",
+      "state": "new-york"
+    },
+    {
+      "id": "1a2823dc",
+      "resort": "Bristol Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "6a4960bc",
+      "resort": "Buffalo Ski Club Ski Area",
+      "state": "new-york"
+    },
+    {
+      "id": "88d28667",
+      "resort": "Catamount",
+      "state": "new-york"
+    },
+    {
+      "id": "de650bb1",
+      "resort": "Dry Hill Ski Area",
+      "state": "new-york"
+    },
+    {
+      "id": "a94c4b12",
+      "resort": "Gore Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "211c8c9a",
+      "resort": "Greek Peak",
+      "state": "new-york"
+    },
+    {
+      "id": "91275e66",
+      "resort": "Holiday Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "5ef613f4",
+      "resort": "Holiday Valley",
+      "state": "new-york"
+    },
+    {
+      "id": "106c9059",
+      "resort": "Holimont Ski Area",
+      "state": "new-york"
+    },
+    {
+      "id": "b3814fbb",
+      "resort": "Hunt Hollow Ski Club",
+      "state": "new-york"
+    },
+    {
+      "id": "2d201b2b",
+      "resort": "Hunter Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "d28326f8",
+      "resort": "Kissing Bridge",
+      "state": "new-york"
+    },
+    {
+      "id": "6f6bea69",
+      "resort": "Labrador Mt.",
+      "state": "new-york"
+    },
+    {
+      "id": "a28350cc",
+      "resort": "Maple Ski Ridge",
+      "state": "new-york"
+    },
+    {
+      "id": "af278df7",
+      "resort": "McCauley Mountain Ski Center",
+      "state": "new-york"
+    },
+    {
+      "id": "d2ca7cda",
+      "resort": "Mount Peter Ski Area",
+      "state": "new-york"
+    },
+    {
+      "id": "a24944ba",
+      "resort": "Oak Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "9baf043c",
+      "resort": "Peek'n Peak",
+      "state": "new-york"
+    },
+    {
+      "id": "358932f4",
+      "resort": "Plattekill Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "a78fa68d",
+      "resort": "Snow Ridge",
+      "state": "new-york"
+    },
+    {
+      "id": "1e7723f6",
+      "resort": "Song Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "b672a9f6",
+      "resort": "Swain",
+      "state": "new-york"
+    },
+    {
+      "id": "39787f25",
+      "resort": "Thunder Ridge",
+      "state": "new-york"
+    },
+    {
+      "id": "2c7545de",
+      "resort": "Titus Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "a0b67d9e",
+      "resort": "West Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "92556a0a",
+      "resort": "Whiteface Mountain Resort",
+      "state": "new-york"
+    },
+    {
+      "id": "2e9ecfb3",
+      "resort": "Willard Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "d65ec008",
+      "resort": "Windham Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "92e34b15",
+      "resort": "Woods Valley Ski Area",
+      "state": "new-york"
+    },
+    {
+      "id": "13aa3b89",
+      "resort": "Royal Mountain Ski Area",
+      "state": "new-york"
+    },
+    {
+      "id": "be7523db",
+      "resort": "Toggenburg Mountain",
+      "state": "new-york"
+    },
+    {
+      "id": "c1e5a866",
+      "resort": "Bear Creek Mountain Resort",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "b4e4f70d",
+      "resort": "Big Boulder",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "08ca764b",
+      "resort": "Blue Knob",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "4406a8d1",
+      "resort": "Blue Mountain Resort",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "b6f51dc4",
+      "resort": "Camelback Mountain Resort",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "4b18e559",
+      "resort": "Elk Mountain Ski Resort",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "b2407f0a",
+      "resort": "Hidden Valley Resort",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "55db9ba5",
+      "resort": "Jack Frost",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "84e1da9e",
+      "resort": "Liberty",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "b942d58a",
+      "resort": "Montage Mountain",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "a7b084ce",
+      "resort": "Mount Pleasant of Edinboro",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "31227ee1",
+      "resort": "Roundtop Mountain Resort",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "bc33366c",
+      "resort": "Seven Springs",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "f3b017fb",
+      "resort": "Shawnee Mountain Ski Area",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "168279d1",
+      "resort": "Ski Big Bear",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "4c0e4a96",
+      "resort": "Ski Sawmill",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "cfaf21a0",
+      "resort": "Spring Mountain Ski Area",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "7f02a4d6",
+      "resort": "Tussey Mountain",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "9b550018",
+      "resort": "Whitetail Resort",
+      "state": "pennsylvania"
+    },
+    {
+      "id": "c7d8545d",
+      "resort": "Alpine Valley Ski Area",
+      "state": "michigan"
+    },
+    {
+      "id": "b9efca8b",
+      "resort": "Big Powderhorn Mountain",
+      "state": "michigan"
+    },
+    {
+      "id": "625a2db7",
+      "resort": "Bittersweet Ski Area",
+      "state": "michigan"
+    },
+    {
+      "id": "7630bc9b",
+      "resort": "Boyne Mountain Resort",
+      "state": "michigan"
+    },
+    {
+      "id": "d6c1c8b3",
+      "resort": "Caberfae Peaks",
+      "state": "michigan"
+    },
+    {
+      "id": "f8bc428a",
+      "resort": "Cannonsburg",
+      "state": "michigan"
+    },
+    {
+      "id": "91e89aa2",
+      "resort": "Crystal Mountain, MI",
+      "state": "michigan"
+    },
+    {
+      "id": "da7a1535",
+      "resort": "Marquette Mountain",
+      "state": "michigan"
+    },
+    {
+      "id": "3fcc47f9",
+      "resort": "Mont Ripley",
+      "state": "michigan"
+    },
+    {
+      "id": "4d2bda97",
+      "resort": "Mount Bohemia",
+      "state": "michigan"
+    },
+    {
+      "id": "228f07f3",
+      "resort": "Mount Holly",
+      "state": "michigan"
+    },
+    {
+      "id": "d21fa135",
+      "resort": "Mt. Brighton",
+      "state": "michigan"
+    },
+    {
+      "id": "8174ac49",
+      "resort": "Norway Mountain",
+      "state": "michigan"
+    },
+    {
+      "id": "134e8c34",
+      "resort": "Nubs Nob Ski Area",
+      "state": "michigan"
+    },
+    {
+      "id": "716012b8",
+      "resort": "Pine Knob Ski Resort",
+      "state": "michigan"
+    },
+    {
+      "id": "c07d5a6d",
+      "resort": "Pine Mountain",
+      "state": "michigan"
+    },
+    {
+      "id": "5fd3de0e",
+      "resort": "Porcupine Mountains Winter Sports Complex",
+      "state": "michigan"
+    },
+    {
+      "id": "3a6a96a4",
+      "resort": "Schuss Mountain at Shanty Creek",
+      "state": "michigan"
+    },
+    {
+      "id": "723b91ef",
+      "resort": "Ski Brule",
+      "state": "michigan"
+    },
+    {
+      "id": "2ae9c51c",
+      "resort": "Snow Snake Mountain Ski Area",
+      "state": "michigan"
+    },
+    {
+      "id": "b2dc1987",
+      "resort": "Snowriver Mountain Resort",
+      "state": "michigan"
+    },
+    {
+      "id": "cab95607",
+      "resort": "Swiss Valley",
+      "state": "michigan"
+    },
+    {
+      "id": "ac0e9fec",
+      "resort": "The Highlands",
+      "state": "michigan"
+    },
+    {
+      "id": "aef00a75",
+      "resort": "The Homestead",
+      "state": "michigan"
+    },
+    {
+      "id": "ed01d098",
+      "resort": "Timber Ridge",
+      "state": "michigan"
+    },
+    {
+      "id": "341ec025",
+      "resort": "Treetops Resort",
+      "state": "michigan"
+    },
+    {
+      "id": "cc420787",
+      "resort": "Mt. Holiday Ski Area",
+      "state": "michigan"
+    },
+    {
+      "id": "cb14f18b",
+      "resort": "Mulligan's Hollow Ski Bowl",
+      "state": "michigan"
+    },
+    {
+      "id": "2f549684",
+      "resort": "Apple Mountain",
+      "state": "michigan"
+    },
+    {
+      "id": "5445717b",
+      "resort": "Alpine Valley Resort",
+      "state": "wisconsin"
+    },
+    {
+      "id": "1ebf9db9",
+      "resort": "Cascade Mountain",
+      "state": "wisconsin"
+    },
+    {
+      "id": "98c752db",
+      "resort": "Christie Mountain",
+      "state": "wisconsin"
+    },
+    {
+      "id": "f93a984c",
+      "resort": "Devils Head",
+      "state": "wisconsin"
+    },
+    {
+      "id": "429854e6",
+      "resort": "Grand Geneva",
+      "state": "wisconsin"
+    },
+    {
+      "id": "d45d3be1",
+      "resort": "Granite Peak Ski Area",
+      "state": "wisconsin"
+    },
+    {
+      "id": "de4bc9c5",
+      "resort": "Little Switzerland",
+      "state": "wisconsin"
+    },
+    {
+      "id": "8407220d",
+      "resort": "Mount La Crosse",
+      "state": "wisconsin"
+    },
+    {
+      "id": "d96aedec",
+      "resort": "Nordic Mountain",
+      "state": "wisconsin"
+    },
+    {
+      "id": "4ed9af94",
+      "resort": "Sunburst",
+      "state": "wisconsin"
+    },
+    {
+      "id": "b4258c5c",
+      "resort": "Trollhaugen",
+      "state": "wisconsin"
+    },
+    {
+      "id": "6891d74b",
+      "resort": "Tyrol Basin",
+      "state": "wisconsin"
+    },
+    {
+      "id": "c8d3f28a",
+      "resort": "Whitecap Mountain",
+      "state": "wisconsin"
+    },
+    {
+      "id": "8e9bdedc",
+      "resort": "Wilmot Mountain",
+      "state": "wisconsin"
+    },
+    {
+      "id": "4ede5e13",
+      "resort": "Bruce Mound",
+      "state": "wisconsin"
+    },
+    {
+      "id": "a64e3ea2",
+      "resort": "Christmas Mountain",
+      "state": "wisconsin"
+    },
+    {
+      "id": "d75b026b",
+      "resort": "Afton Alps",
+      "state": "minnesota"
+    },
+    {
+      "id": "7e3eaccf",
+      "resort": "Andes Tower Hills Ski Area",
+      "state": "minnesota"
+    },
+    {
+      "id": "74674e73",
+      "resort": "Buck Hill",
+      "state": "minnesota"
+    },
+    {
+      "id": "dc123965",
+      "resort": "Buena Vista Ski Area",
+      "state": "minnesota"
+    },
+    {
+      "id": "0d998243",
+      "resort": "Giants Ridge Resort",
+      "state": "minnesota"
+    },
+    {
+      "id": "ce26da1c",
+      "resort": "Hyland Ski & Snowboard Area",
+      "state": "minnesota"
+    },
+    {
+      "id": "34a5eaef",
+      "resort": "Lutsen Mountains",
+      "state": "minnesota"
+    },
+    {
+      "id": "ec1f5fb8",
+      "resort": "Mount Kato Ski Area",
+      "state": "minnesota"
+    },
+    {
+      "id": "43633431",
+      "resort": "Powder Ridge Ski Area",
+      "state": "minnesota"
+    },
+    {
+      "id": "c851beb8",
+      "resort": "Spirit Mountain",
+      "state": "minnesota"
+    },
+    {
+      "id": "476c7a89",
+      "resort": "Welch Village",
+      "state": "minnesota"
+    },
+    {
+      "id": "a5421b35",
+      "resort": "Wild Mountain Ski & Snowboard Area",
+      "state": "minnesota"
+    },
+    {
+      "id": "67d13b05",
+      "resort": "Coffee Mill Ski & Snowboard Resort",
+      "state": "minnesota"
+    },
+    {
+      "id": "18293703",
+      "resort": "Elm Creek Winter Recreation Area",
+      "state": "minnesota"
+    },
+    {
+      "id": "351002fc",
+      "resort": "Canaan Valley Resort",
+      "state": "west-virginia"
+    },
+    {
+      "id": "38ab176e",
+      "resort": "Snowshoe Mountain",
+      "state": "west-virginia"
+    },
+    {
+      "id": "0bfa1a4a",
+      "resort": "Timberline Mountain",
+      "state": "west-virginia"
+    },
+    {
+      "id": "05a36409",
+      "resort": "Winterplace Ski Resort",
+      "state": "west-virginia"
+    },
+    {
+      "id": "60f3c1d6",
+      "resort": "Bryce Resort",
+      "state": "virginia"
+    },
+    {
+      "id": "71666177",
+      "resort": "Massanutten",
+      "state": "virginia"
+    },
+    {
+      "id": "a58b7fde",
+      "resort": "The Omni Homestead Resort",
+      "state": "virginia"
+    },
+    {
+      "id": "0e5959b7",
+      "resort": "Wintergreen Resort",
+      "state": "virginia"
+    },
+    {
+      "id": "b44c2158",
+      "resort": "Berkshire East",
+      "state": "massachusetts"
+    },
+    {
+      "id": "7d5ffaa2",
+      "resort": "Blue Hills Ski Area",
+      "state": "massachusetts"
+    },
+    {
+      "id": "4dc327a0",
+      "resort": "Bousquet Ski Area",
+      "state": "massachusetts"
+    },
+    {
+      "id": "98fbdc30",
+      "resort": "Bradford Ski Area",
+      "state": "massachusetts"
+    },
+    {
+      "id": "2f4d5afd",
+      "resort": "Jiminy Peak",
+      "state": "massachusetts"
+    },
+    {
+      "id": "35a75bda",
+      "resort": "Nashoba Valley",
+      "state": "massachusetts"
+    },
+    {
+      "id": "c474f47f",
+      "resort": "Otis Ridge Ski Area",
+      "state": "massachusetts"
+    },
+    {
+      "id": "a6ad293c",
+      "resort": "Ski Butternut",
+      "state": "massachusetts"
+    },
+    {
+      "id": "0965773e",
+      "resort": "Wachusett Mountain Ski Area",
+      "state": "massachusetts"
+    },
+    {
+      "id": "1ae77d88",
+      "resort": "Ski Ward",
+      "state": "massachusetts"
+    },
+    {
+      "id": "91199192",
+      "resort": "Ski Blandford",
+      "state": "massachusetts"
+    },
+    {
+      "id": "5aab4064",
+      "resort": "Diamond Peak",
+      "state": "nevada"
+    },
+    {
+      "id": "6fcb7eb5",
+      "resort": "Lee Canyon",
+      "state": "nevada"
+    },
+    {
+      "id": "943f91e7",
+      "resort": "Mt. Rose - Ski Tahoe",
+      "state": "nevada"
+    },
+    {
+      "id": "038f8164",
+      "resort": "Angel Fire Resort",
+      "state": "new-mexico"
+    },
+    {
+      "id": "365a9beb",
+      "resort": "Pajarito Mountain Ski Area",
+      "state": "new-mexico"
+    },
+    {
+      "id": "a120319d",
+      "resort": "Red River",
+      "state": "new-mexico"
+    },
+    {
+      "id": "5c0c3c3a",
+      "resort": "Sipapu Ski Resort",
+      "state": "new-mexico"
+    },
+    {
+      "id": "d065e8d9",
+      "resort": "Ski Apache",
+      "state": "new-mexico"
+    },
+    {
+      "id": "de9d7020",
+      "resort": "Ski Santa Fe",
+      "state": "new-mexico"
+    },
+    {
+      "id": "616ee6df",
+      "resort": "Taos Ski Valley",
+      "state": "new-mexico"
+    },
+    {
+      "id": "99d77673",
+      "resort": "Sandia Peak",
+      "state": "new-mexico"
+    },
+    {
+      "id": "8aac33a3",
+      "resort": "Enchanted Forest Ski Area",
+      "state": "new-mexico"
+    }
+  ]
+}

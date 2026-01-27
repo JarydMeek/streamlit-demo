@@ -1,0 +1,212 @@
+{
+  "timestamp": "2026-01-27T10:06:46.960864",
+  "data": [
+    {
+      "base_depth": "74\"",
+      "id": "4baa170f",
+      "open_lifts": "9/9",
+      "open_trails": "135/145",
+      "resort": "Arapahoe Basin Ski Area",
+      "snowfall24h": "10\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "45-71\"",
+      "id": "d569e475",
+      "open_lifts": "34/41",
+      "open_trails": "363/366",
+      "resort": "Aspen Snowmass",
+      "snowfall24h": "3\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "59\"",
+      "id": "4579992c",
+      "open_lifts": "18/24",
+      "open_trails": "168/173",
+      "resort": "Beaver Creek",
+      "snowfall24h": "4\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "72\"",
+      "id": "24980f7e",
+      "open_lifts": "33/35",
+      "open_trails": "188/188",
+      "resort": "Breckenridge",
+      "snowfall24h": "9\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "47-51\"",
+      "id": "1561da77",
+      "open_lifts": "5/5",
+      "open_trails": "64/641",
+      "resort": "Cooper",
+      "snowfall24h": "7\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "75-78\"",
+      "id": "d970f57b",
+      "open_lifts": "24/24",
+      "open_trails": "149/150",
+      "resort": "Copper Mountain",
+      "snowfall24h": "6\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "69\"",
+      "id": "71933ac8",
+      "open_lifts": "15/15",
+      "open_trails": "120/165",
+      "resort": "Crested Butte Mountain Resort",
+      "snowfall24h": "0\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "30\"",
+      "id": "20649c4b",
+      "open_lifts": "10/10",
+      "open_trails": "59/619",
+      "resort": "Eldora Mountain Resort",
+      "snowfall24h": "6\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "34\"",
+      "id": "7f5b8740",
+      "open_lifts": "3/4",
+      "open_trails": "17/171",
+      "resort": "Howelsen Hill",
+      "snowfall24h": "0\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "68\"",
+      "id": "1ce2096c",
+      "open_lifts": "21/21",
+      "open_trails": "140/140",
+      "resort": "Keystone",
+      "snowfall24h": "11\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "73\"",
+      "id": "8f68e27a",
+      "open_lifts": "10/10",
+      "open_trails": "93/949",
+      "resort": "Loveland Ski Area",
+      "snowfall24h": "10\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "57\"",
+      "id": "41689ac7",
+      "open_lifts": "7/7",
+      "open_trails": "67/679",
+      "resort": "Monarch Mountain",
+      "snowfall24h": "1\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "50\"",
+      "id": "9350f06e",
+      "open_lifts": "5/5",
+      "open_trails": "53/549",
+      "resort": "Powderhorn",
+      "snowfall24h": "9\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "50-52\"",
+      "id": "6ff4735b",
+      "open_lifts": "10/11",
+      "open_trails": "107/107",
+      "resort": "Purgatory",
+      "snowfall24h": "0\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "37-57\"",
+      "id": "a4d6579e",
+      "open_lifts": "1/1",
+      "open_trails": "69/691",
+      "resort": "Silverton Mountain",
+      "snowfall24h": "1\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "25\"",
+      "id": "61b69619",
+      "open_lifts": "5/5",
+      "open_trails": "42/421",
+      "resort": "Ski Granby Ranch",
+      "snowfall24h": "3\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "68-107\"",
+      "id": "fb79d359",
+      "open_lifts": "23/23",
+      "open_trails": "184/184",
+      "resort": "Steamboat",
+      "snowfall24h": "4\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "32-41\"",
+      "id": "bd80c479",
+      "open_lifts": "3/3",
+      "open_trails": "75/751",
+      "resort": "Sunlight Mountain Resort",
+      "snowfall24h": "1\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "51\"",
+      "id": "65ef052c",
+      "open_lifts": "17/17",
+      "open_trails": "134/147",
+      "resort": "Telluride",
+      "snowfall24h": "1\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "78\"",
+      "id": "f90d2dd9",
+      "open_lifts": "30/33",
+      "open_trails": "272/274",
+      "resort": "Vail",
+      "snowfall24h": "6\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "78-81\"",
+      "id": "8589c2ad",
+      "open_lifts": "21/25",
+      "open_trails": "158/171",
+      "resort": "Winter Park",
+      "snowfall24h": "12\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "54-58\"",
+      "id": "64ece19d",
+      "open_lifts": "10/11",
+      "open_trails": "144/144",
+      "resort": "Wolf Creek Ski Area",
+      "snowfall24h": "0\"",
+      "state": "colorado"
+    },
+    {
+      "base_depth": "18\"",
+      "id": "7f76aa77",
+      "open_lifts": "n/a",
+      "open_trails": "n/a",
+      "resort": "Echo Mountain",
+      "snowfall24h": "0\"",
+      "state": "colorado"
+    }
+  ]
+}
