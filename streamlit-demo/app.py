@@ -3,6 +3,7 @@ from dropdowns import get_state_dropdown
 from table import get_resort_table 
 from inputs import get_resort_search_bar
 from cards import get_overall_card
+from popovers import get_popover
 
 st.write("##### ⚠️ I know the API data is inaccurate. Turns out finding a free snow data API is hard. Just being used for demo purposes. ⚠️")
 
@@ -10,10 +11,19 @@ st.write("## Snow Report:")
 
 get_state_dropdown()
 
+
 get_overall_card()
 
-st.write("## Resorts:")
+api_limit = st.session_state.get("rate_limited", False)
+if st.session_state.get("rate_limited", False):
+  st.error("API rate limit reached. Please try again tomorrow.")
+else:
+  st.write("## Resorts:")
 
-get_resort_search_bar()
+  col1, col2  = st.columns([4, 1], vertical_alignment="bottom")
+  with col1:
+    get_resort_search_bar()
+  with col2:
+    get_popover()
 
-get_resort_table()
+  get_resort_table()

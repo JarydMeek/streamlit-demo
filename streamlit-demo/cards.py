@@ -1,6 +1,6 @@
 import streamlit as st
 from api import fetch_data
-from utils import get_score_metric
+from utils import get_score_metric, get_overall_score
 
 def display_resort_card(resort_id):
   selected_state = st.session_state.get("selected_state", None)
@@ -15,13 +15,7 @@ def display_resort_card(resort_id):
       with col1a:
         st.header(resort.get("resort", "Unknown Resort"))
       with col2a:
-        open_trails = float(resort.get("open_trails", '0/0').replace('n/a', '0/0').split("/")[0])
-        total_trails = float(resort.get("open_trails", '0/0').replace('n/a', '0/0').split("/")[1])
-        open_trails_percent = (open_trails / total_trails * 100) if total_trails > 0 else 0
-        open_lifts = float(resort.get("open_lifts", '0/0').replace('n/a', '0/0').split("/")[0])
-        total_lifts = float(resort.get("open_lifts", '0/0').replace('n/a', '0/0').split("/")[1])
-        open_lifts_percent = (open_lifts / total_lifts * 100) if total_lifts > 0 else 0
-        overall_score = (open_trails_percent + open_lifts_percent) / 2
+        overall_score, _ = get_overall_score(resort)
         get_score_metric(overall_score, "Overall")
 
       col1, col2, col3, col4 = st.columns(4)
@@ -39,6 +33,9 @@ def get_overall_card():
   resort_data = fetch_data("get_snow_by_state", {
      "state": st.session_state.get("selected_state", None)
   })
+
+  if resort_data == []:  
+      return
 
   total_open_lifts = sum(int(resort.get("open_lifts", '0/0').replace('n/a', '0/0').split("/")[0]) for resort in resort_data)
   total_lifts = sum(int(resort.get("open_lifts", '0/0').replace('n/a', '0/0').split("/")[1]) for resort in resort_data)
