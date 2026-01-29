@@ -6,7 +6,7 @@ from cards import get_overall_card
 from popovers import get_popover
 from query_params import read_query_params, set_query_params
 
-st.set_page_config(page_title="Snow Report v1", page_icon="❄️")
+st.set_page_config(page_title="Snow Data v1", page_icon="❄️")
 
 
 set_query_params()
