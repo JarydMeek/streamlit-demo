@@ -9,6 +9,9 @@ COMPARE_COUNTRY_SELECTOR_STATE_KEY = "v2_compare_country"
 COMPARE_STATE_SELECTOR_STATE_KEY = "v2_compare_state"
 COMPARE_RESORT_SELECTOR_STATE_KEY = "v2_compare_resort"
 
+# Season comparison state key
+COMPARE_SEASONS_STATE_KEY = "v2_compare_seasons"
+
 
 # Dataframe column names for historical weather data
 COL_DATE = "Date"

@@ -1,16 +1,23 @@
 import streamlit as st
-from v2_api import fetch_historical_data_for_current_resort, fetch_historical_data_for_comparison_resort
+from v2_api import (
+    fetch_historical_data_for_current_resort, fetch_historical_data_for_comparison_resort,
+    fetch_this_season_data_for_current_resort, fetch_last_season_data_for_current_resort,
+    get_season_dates
+)
 from v2_components import date_range_with_query_params
 from v2_constants import (
     COL_PRECIPITATION, COL_PRESSURE, COL_SNOWFALL, RESORT_SELECTOR_STATE_KEY,
     DATE_RANGE_STATE_KEY, STATE_SELECTOR_STATE_KEY, COL_DATE, COL_TEMP_MAX,
     COL_TEMP_MIN, COL_TEMP_MEAN, COL_WIND_SPEED_MAX, COL_WIND_GUSTS_MAX,
     COMPARE_RESORT_SELECTOR_STATE_KEY, COMPARE_STATE_SELECTOR_STATE_KEY,
-    COMPARE_COUNTRY_SELECTOR_STATE_KEY
+    COMPARE_COUNTRY_SELECTOR_STATE_KEY, COMPARE_SEASONS_STATE_KEY
 )
 from v2_utils import format_date
 import plotly.graph_objects as go
 import pandas as pd
+
+# Column for day of season (used in season comparisons)
+COL_DAY_OF_SEASON = "Day of Season"
 
 # Colors for primary and comparison resorts
 PRIMARY_COLOR = '#1f77b4'
@@ -21,6 +28,71 @@ COMPARE_COLOR_ALT = '#9467bd'
 COMPARE_COLOR_THIRD = '#e377c2'
 
 def get_resort_data():
+    selected_resort = st.session_state.get(RESORT_SELECTOR_STATE_KEY, "N/A")
+    selected_state = st.session_state.get(STATE_SELECTOR_STATE_KEY, "N/A")
+
+    # Check if season comparison is enabled
+    compare_seasons = st.session_state.get(COMPARE_SEASONS_STATE_KEY, False)
+
+    if compare_seasons:
+        # Season comparison mode
+        get_season_comparison_data(selected_resort, selected_state)
+    else:
+        # Normal mode with optional resort comparison
+        get_normal_resort_data(selected_resort, selected_state)
+
+
+def get_season_comparison_data(selected_resort, selected_state):
+    season_dates = get_season_dates()
+
+    this_season_data = fetch_this_season_data_for_current_resort()
+    last_season_data = fetch_last_season_data_for_current_resort()
+
+    if this_season_data is None:
+        st.error("Error fetching this season's data.")
+        return
+
+    if last_season_data is None:
+        st.error("Error fetching last season's data.")
+        return
+
+    # Add day-of-season column for alignment
+    this_season_start = season_dates['this_season_start']
+    last_season_start = season_dates['last_season_start']
+
+    this_season_data = this_season_data.copy()
+    last_season_data = last_season_data.copy()
+
+    this_season_data[COL_DAY_OF_SEASON] = (this_season_data[COL_DATE] - pd.Timestamp(this_season_start)).dt.days
+    last_season_data[COL_DAY_OF_SEASON] = (last_season_data[COL_DATE] - pd.Timestamp(last_season_start)).dt.days
+
+    # Get season year labels
+    this_season_label = f"{this_season_start.year}-{this_season_start.year + 1}"
+    last_season_label = f"{last_season_start.year}-{last_season_start.year + 1}"
+
+    # Display header
+    st.write(f"### {selected_resort}: This Season vs Last Season")
+    st.write(f"##### {this_season_label} vs {last_season_label}")
+    st.caption(f"🔵 This Season ({this_season_label}) | 🟠 Last Season ({last_season_label})")
+    st.caption(f"This season: {format_date(season_dates['this_season_start'])} to {format_date(season_dates['this_season_end'])} ({season_dates['days_into_season']} days)")
+
+    # Use day of season for x-axis
+    get_season_temps(this_season_data, last_season_data, this_season_label, last_season_label)
+
+    col1a, col2a = st.columns(2)
+    with col1a:
+        get_season_snowfall(this_season_data, last_season_data, this_season_label, last_season_label)
+    with col2a:
+        get_season_pressure(this_season_data, last_season_data, this_season_label, last_season_label)
+
+    col1b, col2b = st.columns(2)
+    with col1b:
+        get_season_wind(this_season_data, last_season_data, this_season_label, last_season_label)
+    with col2b:
+        get_season_cumulative_snowfall(this_season_data, last_season_data, this_season_label, last_season_label, season_dates)
+
+
+def get_normal_resort_data(selected_resort, selected_state):
     date_range = date_range_with_query_params(
         "Select date range for historical weather data",
         state_key=DATE_RANGE_STATE_KEY)
@@ -29,8 +101,6 @@ def get_resort_data():
         start_date=date_range[0],
         end_date=date_range[1],
     )
-    selected_resort = st.session_state.get(RESORT_SELECTOR_STATE_KEY, "N/A")
-    selected_state = st.session_state.get(STATE_SELECTOR_STATE_KEY, "N/A")
 
     # Fetch comparison data if a comparison resort is selected
     compare_data = fetch_historical_data_for_comparison_resort(
@@ -87,10 +157,6 @@ def get_resort_data():
 
 
 def detect_storm_periods(data, threshold=0.5):
-    """
-    Detect multi-day storm periods where snowfall or precipitation exceeds threshold.
-    Returns list of tuples: [(start_date, end_date, total_snowfall), ...]
-    """
     if data is None or data.empty:
         return []
     
@@ -445,45 +511,51 @@ def get_resort_snowfall_vs_pressure(data):
     if data is None or data.empty:
         st.error("No data available to display snowfall vs pressure.")
         return
-    
+
     st.write("###### Daily Snowfall vs Pressure")
     st.write("This chart shows daily snowfall (bars) against atmospheric pressure (line). Generally, lower pressure is associated with stormy weather and higher snowfall.")
-    
+
     fig = go.Figure()
-    
+
     # Calculate average pressure for the period
     avg_pressure = data[COL_PRESSURE].mean()
-    low_threshold = avg_pressure - 5
-    
-    # Add vertical shading for low pressure periods
-    for idx, row in data.iterrows():
-        if row[COL_PRESSURE] < low_threshold:
-            # Low pressure period - shade red
-            if idx == 0:
-                x0 = row[COL_DATE]
-            else:
-                prev_date = data.iloc[idx - 1][COL_DATE]
-                x0 = prev_date if data.iloc[idx - 1][COL_PRESSURE] >= low_threshold else None
-            
-            if idx == len(data) - 1:
-                x1 = row[COL_DATE]
-            else:
-                next_date = data.iloc[idx + 1][COL_DATE]
-                x1 = next_date if idx + 1 < len(data) and data.iloc[idx + 1][COL_PRESSURE] >= low_threshold else None
-            
-            if x0 is None:
-                x0 = row[COL_DATE]
-            if x1 is None:
-                x1 = row[COL_DATE]
-                
-            fig.add_vrect(
-                x0=x0,
-                x1=x1,
-                fillcolor="rgba(255, 200, 200, 0.3)",
-                layer="below",
-                line_width=0,
-            )
-    
+
+    # Find continuous below-average pressure periods
+    data_sorted = data.sort_values(COL_DATE).reset_index(drop=True)
+    low_pressure_periods = []
+    in_low_period = False
+    period_start = None
+
+    for idx, row in data_sorted.iterrows():
+        is_low = row[COL_PRESSURE] < avg_pressure
+
+        if is_low and not in_low_period:
+            # Start of a new low pressure period
+            in_low_period = True
+            period_start = row[COL_DATE]
+        elif not is_low and in_low_period:
+            # End of low pressure period
+            period_end = data_sorted.iloc[idx - 1][COL_DATE]
+            low_pressure_periods.append((period_start, period_end))
+            in_low_period = False
+            period_start = None
+
+    # Handle case where low pressure extends to end of data
+    if in_low_period:
+        period_end = data_sorted.iloc[-1][COL_DATE]
+        low_pressure_periods.append((period_start, period_end))
+
+    # Add vertical shading for each low pressure period
+    for start_date, end_date in low_pressure_periods:
+        # Add half a day padding on each side for visibility
+        fig.add_vrect(
+            x0=start_date - pd.Timedelta(hours=12),
+            x1=end_date + pd.Timedelta(hours=12),
+            fillcolor="rgba(255, 150, 150, 0.3)",
+            layer="below",
+            line_width=0,
+        )
+
     # Add pressure line on primary y-axis
     fig.add_trace(go.Scatter(
         x=data[COL_DATE],
@@ -500,15 +572,6 @@ def get_resort_snowfall_vs_pressure(data):
         line_dash="dash",
         line_color="rgba(100, 100, 100, 0.5)",
         annotation_text=f"Avg ({avg_pressure:.0f} mb)",
-        annotation_position="right"
-    )
-    
-    # Add low threshold line
-    fig.add_hline(
-        y=low_threshold,
-        line_dash="dot",
-        line_color="rgba(255, 100, 100, 0.5)",
-        annotation_text=f"Low ({low_threshold:.0f} mb)",
         annotation_position="right"
     )
     
@@ -649,5 +712,258 @@ def get_custom_comparison(data):
             x=1
         )
     )
-    
+
     st.plotly_chart(fig)
+
+
+# ============================================
+# Season Comparison Charts (using day-of-season)
+# ============================================
+
+def get_season_temps(this_season_data, last_season_data, this_label, last_label):
+    
+    st.write("###### Daily Temperatures")
+
+    fig = go.Figure()
+
+    # This season (solid lines)
+    fig.add_trace(go.Scatter(
+        x=this_season_data[COL_DAY_OF_SEASON],
+        y=this_season_data[COL_TEMP_MEAN],
+        name=f"Mean ({this_label})",
+        line=dict(color=PRIMARY_COLOR, shape='spline'),
+        legendgroup="this"
+    ))
+
+    # Last season (dashed lines)
+    fig.add_trace(go.Scatter(
+        x=last_season_data[COL_DAY_OF_SEASON],
+        y=last_season_data[COL_TEMP_MEAN],
+        name=f"Mean ({last_label})",
+        line=dict(color=COMPARE_COLOR, dash='dash', shape='spline'),
+        legendgroup="last"
+    ))
+
+    fig.update_layout(
+        xaxis_title="Day of Season",
+        yaxis_title="Temperature (°F)",
+        height=300,
+        margin=dict(t=10, b=40, l=40, r=40),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        hovermode='x unified'
+    )
+
+    st.plotly_chart(fig)
+
+
+def get_season_snowfall(this_season_data, last_season_data, this_label, last_label):
+    
+    st.write("###### Daily Snowfall")
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Bar(
+        x=this_season_data[COL_DAY_OF_SEASON],
+        y=this_season_data[COL_SNOWFALL],
+        name=this_label,
+        marker_color=PRIMARY_COLOR,
+        opacity=0.7
+    ))
+
+    fig.add_trace(go.Bar(
+        x=last_season_data[COL_DAY_OF_SEASON],
+        y=last_season_data[COL_SNOWFALL],
+        name=last_label,
+        marker_color=COMPARE_COLOR,
+        opacity=0.7
+    ))
+
+    fig.update_layout(
+        xaxis_title="Day of Season",
+        yaxis_title="Snowfall (in)",
+        height=250,
+        margin=dict(t=20, b=40, l=40, r=40),
+        barmode='group',
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        hovermode='x unified'
+    )
+
+    st.plotly_chart(fig)
+
+
+def get_season_pressure(this_season_data, last_season_data, this_label, last_label):
+    
+    st.write("###### Daily Pressure")
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(
+        x=this_season_data[COL_DAY_OF_SEASON],
+        y=this_season_data[COL_PRESSURE],
+        mode='lines',
+        name=this_label,
+        line=dict(color=PRIMARY_COLOR, shape='spline')
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=last_season_data[COL_DAY_OF_SEASON],
+        y=last_season_data[COL_PRESSURE],
+        mode='lines',
+        name=last_label,
+        line=dict(color=COMPARE_COLOR, dash='dash', shape='spline')
+    ))
+
+    fig.update_layout(
+        xaxis_title="Day of Season",
+        yaxis_title="Pressure (mb)",
+        height=250,
+        yaxis=dict(rangemode='normal'),
+        margin=dict(t=10, b=40, l=40, r=40),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        hovermode='x unified'
+    )
+
+    st.plotly_chart(fig)
+
+
+def get_season_wind(this_season_data, last_season_data, this_label, last_label):
+    
+    st.write("###### Daily Wind")
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(
+        x=this_season_data[COL_DAY_OF_SEASON],
+        y=this_season_data[COL_WIND_SPEED_MAX],
+        name=f"Max Wind ({this_label})",
+        line=dict(color=PRIMARY_COLOR, shape='spline'),
+        legendgroup="this"
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=last_season_data[COL_DAY_OF_SEASON],
+        y=last_season_data[COL_WIND_SPEED_MAX],
+        name=f"Max Wind ({last_label})",
+        line=dict(color=COMPARE_COLOR, dash='dash', shape='spline'),
+        legendgroup="last"
+    ))
+
+    fig.add_hline(y=30, line_dash="dash", line_color="rgba(255, 0, 0, 0.5)",
+                  annotation_text="High Wind", annotation_position="right")
+
+    fig.update_layout(
+        xaxis_title="Day of Season",
+        yaxis_title="Wind Speed (mph)",
+        height=300,
+        margin=dict(t=10, b=40, l=40, r=40),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        hovermode='x unified'
+    )
+
+    st.plotly_chart(fig)
+
+
+def get_season_cumulative_snowfall(this_season_data, last_season_data, this_label, last_label, season_dates):
+    
+    st.write("###### Cumulative Snowfall")
+
+    # Calculate cumulative sums
+    this_cumulative = this_season_data[COL_SNOWFALL].cumsum()
+    last_cumulative = last_season_data[COL_SNOWFALL].cumsum()
+
+    this_total = this_cumulative.iloc[-1] if len(this_cumulative) > 0 else 0
+    last_total = last_cumulative.iloc[-1] if len(last_cumulative) > 0 else 0
+
+    # Get last season total at equivalent day (for fair comparison)
+    days_into_season = season_dates['days_into_season']
+    last_at_equivalent = last_cumulative.iloc[days_into_season] if len(last_cumulative) > days_into_season else last_total
+
+    fig = go.Figure()
+
+    # This season
+    fig.add_trace(go.Scatter(
+        x=this_season_data[COL_DAY_OF_SEASON],
+        y=this_cumulative,
+        name=this_label,
+        line=dict(color=PRIMARY_COLOR_ALT)
+    ))
+
+    # Last season (full season)
+    fig.add_trace(go.Scatter(
+        x=last_season_data[COL_DAY_OF_SEASON],
+        y=last_cumulative,
+        name=last_label,
+        line=dict(color=COMPARE_COLOR, dash='dash')
+    ))
+
+    # Add vertical line at current day of season
+    fig.add_vline(
+        x=days_into_season,
+        line_dash="dot",
+        line_color="rgba(100, 100, 100, 0.5)",
+        annotation_text="Today",
+        annotation_position="top"
+    )
+
+    fig.update_layout(
+        xaxis_title="Day of Season",
+        yaxis_title="Total Snowfall (in)",
+        height=250,
+        margin=dict(t=10, b=40, l=40, r=40),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        hovermode='x unified'
+    )
+
+    st.plotly_chart(fig)
+
+    # Show comparison with metrics
+    diff = this_total - last_at_equivalent
+    diff_str = f"+{diff:.1f}" if diff >= 0 else f"{diff:.1f}"
+
+    # Calculate percentage difference
+    if last_at_equivalent > 0:
+        pct_diff = ((this_total - last_at_equivalent) / last_at_equivalent) * 100
+        pct_str = f"+{pct_diff:.0f}%" if pct_diff >= 0 else f"{pct_diff:.0f}%"
+    else:
+        pct_diff = 0
+        pct_str = "N/A"
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("This Season", f"{this_total:.1f}\"", delta=f"{diff_str}\" vs last year")
+    with col2:
+        st.metric("Last Season (same point)", f"{last_at_equivalent:.1f}\"")
+    with col3:
+        st.metric("Year-over-Year", pct_str)
+
+    st.caption(f"Last season final total: {last_total:.1f}\"")

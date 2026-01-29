@@ -11,13 +11,17 @@ def selectbox_with_query_params(label, options, state_key):
     if query_param_value and query_param_value in options:
         index = options.index(query_param_value)
 
+    def on_selectbox_change():
+        if state_key in st.session_state:
+            st.query_params.update({state_key: st.session_state[state_key].lower()})
+
     st.selectbox(
         label,
         options=options,
         format_func=lambda x: x.title() if x else "N/A",
         key=state_key,
         index=index,
-        on_change=lambda: st.query_params.update({state_key: st.session_state[state_key].lower()}),
+        on_change=on_selectbox_change,
     )
 
 

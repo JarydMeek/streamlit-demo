@@ -106,7 +106,6 @@ def fetch_historical_data_for_current_resort(start_date, end_date):
 
 
 def fetch_historical_data_for_comparison_resort(start_date, end_date):
-    """Fetch weather data for the comparison resort, if one is selected."""
     compare_country = st.session_state.get(COMPARE_COUNTRY_SELECTOR_STATE_KEY, None)
     if not compare_country or compare_country == "None":
         return None
@@ -127,3 +126,96 @@ def fetch_historical_data_for_comparison_resort(start_date, end_date):
         return None
 
     return fetch_historical_weather(lat, lng, start_date, end_date)
+
+
+def get_season_dates():
+    from datetime import date
+
+    today = date.today()
+    current_year = today.year
+    current_month = today.month
+
+    # Figure out which season year we're in
+    if current_month >= 10:  # Oct-Dec: we're in the new season
+        this_season_start_year = current_year
+    elif current_month <= 4:  # Jan-Apr: still in the season that started last Oct
+        this_season_start_year = current_year - 1
+    else:  # May-Sep (off-season): show the most recent completed season as "this" season
+        this_season_start_year = current_year - 1
+
+    # This season dates
+    this_season_start = date(this_season_start_year, 10, 1)
+
+    # This season end is either today (if in season) or Apr 30 (if season ended)
+    if current_month >= 5 and current_month <= 9:
+        # Off-season: show full completed season
+        this_season_end = date(this_season_start_year + 1, 4, 30)
+    else:
+        # In season: show up to today
+        this_season_end = today
+
+    # Last season dates (full season)
+    last_season_start = date(this_season_start_year - 1, 10, 1)
+    last_season_end = date(this_season_start_year, 4, 30)
+
+    # For comparison, we also need the equivalent date in last season
+    # (same day-of-season as this_season_end)
+    days_into_season = (this_season_end - this_season_start).days
+    last_season_equivalent_end = date(last_season_start.year, 10, 1) + pd.Timedelta(days=days_into_season)
+
+    return {
+        'this_season_start': this_season_start,
+        'this_season_end': this_season_end,
+        'last_season_start': last_season_start,
+        'last_season_end': last_season_end,
+        'last_season_equivalent_end': last_season_equivalent_end,
+        'days_into_season': days_into_season
+    }
+
+
+def fetch_last_season_data_for_current_resort():
+    if RESORT_SELECTOR_STATE_KEY not in st.session_state:
+        return None
+
+    resorts = fetch_resorts()
+    selected_resort_name = st.session_state[RESORT_SELECTOR_STATE_KEY]
+    selected_resort = next((resort for resort in resorts if resort.get("name") == selected_resort_name), None)
+    if not selected_resort:
+        return None
+
+    lat = selected_resort.get("lat", None)
+    lng = selected_resort.get("lng", None)
+
+    if lat is None or lng is None:
+        return None
+
+    season_dates = get_season_dates()
+    return fetch_historical_weather(
+        lat, lng,
+        season_dates['last_season_start'],
+        season_dates['last_season_end']
+    )
+
+
+def fetch_this_season_data_for_current_resort():
+    if RESORT_SELECTOR_STATE_KEY not in st.session_state:
+        return None
+
+    resorts = fetch_resorts()
+    selected_resort_name = st.session_state[RESORT_SELECTOR_STATE_KEY]
+    selected_resort = next((resort for resort in resorts if resort.get("name") == selected_resort_name), None)
+    if not selected_resort:
+        return None
+
+    lat = selected_resort.get("lat", None)
+    lng = selected_resort.get("lng", None)
+
+    if lat is None or lng is None:
+        return None
+
+    season_dates = get_season_dates()
+    return fetch_historical_weather(
+        lat, lng,
+        season_dates['this_season_start'],
+        season_dates['this_season_end']
+    )
