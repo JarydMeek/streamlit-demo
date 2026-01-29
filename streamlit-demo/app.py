@@ -4,6 +4,10 @@ from table import get_resort_table
 from inputs import get_resort_search_bar
 from cards import get_overall_card
 from popovers import get_popover
+from query_params import read_query_params, set_query_params
+
+set_query_params()
+read_query_params()
 
 st.write("##### ⚠️ I know the API data is inaccurate. Turns out finding a free snow data API is hard. Just being used for demo purposes. ⚠️")
 
@@ -27,3 +31,4 @@ else:
     get_popover()
 
   get_resort_table()
+
