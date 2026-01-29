@@ -76,6 +76,8 @@ def get_season_comparison_data(selected_resort, selected_state):
     st.caption(f"🔵 This Season ({this_season_label}) | 🟠 Last Season ({last_season_label})")
     st.caption(f"This season: {format_date(season_dates['this_season_start'])} to {format_date(season_dates['this_season_end'])} ({season_dates['days_into_season']} days)")
 
+    get_season_cumulative_snowfall(this_season_data, last_season_data, this_season_label, last_season_label, season_dates)
+
     # Use day of season for x-axis
     get_season_temps(this_season_data, last_season_data, this_season_label, last_season_label)
 
@@ -85,11 +87,10 @@ def get_season_comparison_data(selected_resort, selected_state):
     with col2a:
         get_season_pressure(this_season_data, last_season_data, this_season_label, last_season_label)
 
-    col1b, col2b = st.columns(2)
+    col1b, _ = st.columns(2)
     with col1b:
         get_season_wind(this_season_data, last_season_data, this_season_label, last_season_label)
-    with col2b:
-        get_season_cumulative_snowfall(this_season_data, last_season_data, this_season_label, last_season_label, season_dates)
+
 
 
 def get_normal_resort_data(selected_resort, selected_state):
