@@ -1,16 +1,30 @@
 import streamlit as st
-from v2_api import fetch_historical_data_for_current_resort
+from v2_api import fetch_historical_data_for_current_resort, fetch_historical_data_for_comparison_resort
 from v2_components import date_range_with_query_params
-from v2_constants import COL_PRECIPITATION, COL_PRESSURE, COL_SNOWFALL, RESORT_SELECTOR_STATE_KEY, DATE_RANGE_STATE_KEY, STATE_SELECTOR_STATE_KEY, COL_DATE, COL_TEMP_MAX, COL_TEMP_MIN, COL_TEMP_MEAN, COL_WIND_SPEED_MAX, COL_WIND_GUSTS_MAX
+from v2_constants import (
+    COL_PRECIPITATION, COL_PRESSURE, COL_SNOWFALL, RESORT_SELECTOR_STATE_KEY,
+    DATE_RANGE_STATE_KEY, STATE_SELECTOR_STATE_KEY, COL_DATE, COL_TEMP_MAX,
+    COL_TEMP_MIN, COL_TEMP_MEAN, COL_WIND_SPEED_MAX, COL_WIND_GUSTS_MAX,
+    COMPARE_RESORT_SELECTOR_STATE_KEY, COMPARE_STATE_SELECTOR_STATE_KEY,
+    COMPARE_COUNTRY_SELECTOR_STATE_KEY
+)
 from v2_utils import format_date
 import plotly.graph_objects as go
 import pandas as pd
+
+# Colors for primary and comparison resorts
+PRIMARY_COLOR = '#1f77b4'
+PRIMARY_COLOR_ALT = '#2ca02c'
+PRIMARY_COLOR_THIRD = '#d62728'
+COMPARE_COLOR = '#ff7f0e'
+COMPARE_COLOR_ALT = '#9467bd'
+COMPARE_COLOR_THIRD = '#e377c2'
 
 def get_resort_data():
     date_range = date_range_with_query_params(
         "Select date range for historical weather data",
         state_key=DATE_RANGE_STATE_KEY)
-    
+
     data = fetch_historical_data_for_current_resort(
         start_date=date_range[0],
         end_date=date_range[1],
@@ -18,37 +32,58 @@ def get_resort_data():
     selected_resort = st.session_state.get(RESORT_SELECTOR_STATE_KEY, "N/A")
     selected_state = st.session_state.get(STATE_SELECTOR_STATE_KEY, "N/A")
 
+    # Fetch comparison data if a comparison resort is selected
+    compare_data = fetch_historical_data_for_comparison_resort(
+        start_date=date_range[0],
+        end_date=date_range[1],
+    )
+    compare_resort = st.session_state.get(COMPARE_RESORT_SELECTOR_STATE_KEY, None)
+    compare_state = st.session_state.get(COMPARE_STATE_SELECTOR_STATE_KEY, None)
+    compare_country = st.session_state.get(COMPARE_COUNTRY_SELECTOR_STATE_KEY, None)
+
+    # Check if comparison is valid
+    has_comparison = (
+        compare_data is not None and
+        compare_country and compare_country != "None" and
+        compare_resort
+    )
+
     if data is None:
         st.error("Error fetching historical data for the selected resort and date range.")
         return
 
-    st.write(f"### {selected_resort}, {selected_state}")
-    st.write(f"##### {format_date(date_range[0])} to {format_date(date_range[1])}")
+    # Display header
+    if has_comparison:
+        st.write(f"### {selected_resort} vs {compare_resort}")
+        st.write(f"##### {format_date(date_range[0])} to {format_date(date_range[1])}")
+        st.caption(f"🔵 {selected_resort}, {selected_state} | 🟠 {compare_resort}, {compare_state}")
+    else:
+        st.write(f"### {selected_resort}, {selected_state}")
+        st.write(f"##### {format_date(date_range[0])} to {format_date(date_range[1])}")
 
     # Detect storms for highlighting
     storm_periods = detect_storm_periods(data)
 
-    get_resort_temps(data)
+    get_resort_temps(data, compare_data if has_comparison else None, selected_resort, compare_resort)
 
     col1a, col2a = st.columns(2)
     with col1a:
-        get_resort_snowfall(data, storm_periods)
+        get_resort_snowfall(data, storm_periods, compare_data if has_comparison else None, selected_resort, compare_resort)
     with col2a:
-        get_resort_pressure(data)
+        get_resort_pressure(data, compare_data if has_comparison else None, selected_resort, compare_resort)
 
     col1b, col2b = st.columns(2)
     with col1b:
-        get_resort_wind(data)
+        get_resort_wind(data, compare_data if has_comparison else None, selected_resort, compare_resort)
     with col2b:
-        get_resort_cumulative_snowfall(data)
+        get_resort_cumulative_snowfall(data, compare_data if has_comparison else None, selected_resort, compare_resort)
 
-
-    # Combined metrics
-    st.write("### Combined Metrics for Deeper Insights")
-    st.write("These combined charts help visualize relationships between different weather parameters. **I highly recommend setting the date range to no more than a few months for optimal clarity.**")
-    get_resort_snowfall_vs_pressure(data)
-
-    get_custom_comparison(data)
+    # Combined metrics - only show when not comparing resorts
+    if not has_comparison:
+        st.write("### Combined Metrics for Deeper Insights")
+        st.write("These combined charts help visualize relationships between different weather parameters. **I highly recommend setting the date range to no more than a few months for optimal clarity.**")
+        get_resort_snowfall_vs_pressure(data)
+        get_custom_comparison(data)
 
 
 def detect_storm_periods(data, threshold=0.5):
@@ -91,40 +126,70 @@ def detect_storm_periods(data, threshold=0.5):
     return storm_periods
 
 
-def get_resort_temps(data):
+def get_resort_temps(data, compare_data=None, primary_name="Primary", compare_name="Compare"):
     if data is None or data.empty:
         st.error("No data available to display temperatures.")
         return
 
     st.write("###### Daily Temperatures")
-    
+
     fig = go.Figure()
-    
+
+    # Primary resort data
     fig.add_trace(go.Scatter(
         x=data[COL_DATE],
         y=data[COL_TEMP_MAX],
-        name="Max",
-        line=dict(color='#1f77b4')
+        name=f"Max ({primary_name})" if compare_data is not None else "Max",
+        line=dict(color=PRIMARY_COLOR),
+        legendgroup="primary"
     ))
-    
+
     fig.add_trace(go.Scatter(
         x=data[COL_DATE],
         y=data[COL_TEMP_MEAN],
-        name="Mean",
-        line=dict(color='#2ca02c')
+        name=f"Mean ({primary_name})" if compare_data is not None else "Mean",
+        line=dict(color=PRIMARY_COLOR_ALT),
+        legendgroup="primary"
     ))
-    
+
     fig.add_trace(go.Scatter(
         x=data[COL_DATE],
         y=data[COL_TEMP_MIN],
-        name="Min",
-        line=dict(color='#d62728')
+        name=f"Min ({primary_name})" if compare_data is not None else "Min",
+        line=dict(color=PRIMARY_COLOR_THIRD),
+        legendgroup="primary"
     ))
-    
+
+    # Comparison resort data
+    if compare_data is not None and not compare_data.empty:
+        fig.add_trace(go.Scatter(
+            x=compare_data[COL_DATE],
+            y=compare_data[COL_TEMP_MAX],
+            name=f"Max ({compare_name})",
+            line=dict(color=COMPARE_COLOR, dash='dash'),
+            legendgroup="compare"
+        ))
+
+        fig.add_trace(go.Scatter(
+            x=compare_data[COL_DATE],
+            y=compare_data[COL_TEMP_MEAN],
+            name=f"Mean ({compare_name})",
+            line=dict(color=COMPARE_COLOR_ALT, dash='dash'),
+            legendgroup="compare"
+        ))
+
+        fig.add_trace(go.Scatter(
+            x=compare_data[COL_DATE],
+            y=compare_data[COL_TEMP_MIN],
+            name=f"Min ({compare_name})",
+            line=dict(color=COMPARE_COLOR_THIRD, dash='dash'),
+            legendgroup="compare"
+        ))
+
     fig.update_layout(
         xaxis_title="Date",
         yaxis_title="Temperature (°F)",
-        height=250,
+        height=250 if compare_data is None else 300,
         margin=dict(t=10, b=40, l=40, r=40),
         legend=dict(
             orientation="h",
@@ -132,34 +197,47 @@ def get_resort_temps(data):
             y=1.02,
             xanchor="right",
             x=1
-        )
+        ),
+        hovermode='x unified'
     )
-    
+
     st.plotly_chart(fig)
 
 
-def get_resort_snowfall(data, storm_periods=None):
+def get_resort_snowfall(data, storm_periods=None, compare_data=None, primary_name="Primary", compare_name="Compare"):
     if data is None or data.empty:
         st.error("No data available to display snowfall.")
         return
 
     st.write("###### Daily Snowfall")
-    
+
     # Show storm summary if storms detected
     if storm_periods and len(storm_periods) > 0:
         multi_day_storms = [s for s in storm_periods if s[0] != s[1]]
         if multi_day_storms:
             st.caption(f"🌨️ {len(multi_day_storms)} multi-day storm(s) detected")
-    
+
     fig = go.Figure()
-    
+
+    # Primary resort data
     fig.add_trace(go.Bar(
         x=data[COL_DATE],
         y=data[COL_SNOWFALL],
-        name="Snowfall",
-        marker_color='#1f77b4'
+        name=primary_name if compare_data is not None else "Snowfall",
+        marker_color=PRIMARY_COLOR,
+        opacity=0.7 if compare_data is not None else 1.0
     ))
-    
+
+    # Comparison resort data
+    if compare_data is not None and not compare_data.empty:
+        fig.add_trace(go.Bar(
+            x=compare_data[COL_DATE],
+            y=compare_data[COL_SNOWFALL],
+            name=compare_name,
+            marker_color=COMPARE_COLOR,
+            opacity=0.7
+        ))
+
     # Add storm period shading
     if storm_periods:
         for start, end, total in storm_periods:
@@ -170,50 +248,79 @@ def get_resort_snowfall(data, storm_periods=None):
                     layer="below",
                     line_width=0,
                 )
-    
+
     fig.update_layout(
         xaxis_title="Date",
         yaxis_title="Snowfall (in)",
         height=250,
-        showlegend=False,
-        margin=dict(t=20, b=40, l=40, r=40)
+        showlegend=compare_data is not None,
+        margin=dict(t=20, b=40, l=40, r=40),
+        barmode='group',
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        hovermode='x unified'
     )
-    
+
     st.plotly_chart(fig)
 
 
-def get_resort_wind(data):
+def get_resort_wind(data, compare_data=None, primary_name="Primary", compare_name="Compare"):
     if data is None or data.empty:
         st.error("No data available to display wind data.")
         return
 
     st.write("###### Daily Wind")
-    
+
     fig = go.Figure()
-    
+
+    # Primary resort data
     fig.add_trace(go.Scatter(
         x=data[COL_DATE],
         y=data[COL_WIND_GUSTS_MAX],
-        name="Max Gusts",
+        name=f"Max Gusts ({primary_name})" if compare_data is not None else "Max Gusts",
         line=dict(color="rgba(128, 128, 128, 0.5)"),
-        fill='tonexty'
+        legendgroup="primary"
     ))
-    
+
     fig.add_trace(go.Scatter(
         x=data[COL_DATE],
         y=data[COL_WIND_SPEED_MAX],
-        name="Max Wind Speed",
-        line=dict(color='#1f77b4')
+        name=f"Max Wind ({primary_name})" if compare_data is not None else "Max Wind Speed",
+        line=dict(color=PRIMARY_COLOR),
+        legendgroup="primary"
     ))
-    
+
+    # Comparison resort data
+    if compare_data is not None and not compare_data.empty:
+        fig.add_trace(go.Scatter(
+            x=compare_data[COL_DATE],
+            y=compare_data[COL_WIND_GUSTS_MAX],
+            name=f"Max Gusts ({compare_name})",
+            line=dict(color="rgba(200, 150, 100, 0.5)", dash='dash'),
+            legendgroup="compare"
+        ))
+
+        fig.add_trace(go.Scatter(
+            x=compare_data[COL_DATE],
+            y=compare_data[COL_WIND_SPEED_MAX],
+            name=f"Max Wind ({compare_name})",
+            line=dict(color=COMPARE_COLOR, dash='dash'),
+            legendgroup="compare"
+        ))
+
     # Add reference line for high wind (lifts close at ~30 mph)
-    fig.add_hline(y=30, line_dash="dash", line_color="rgba(255, 0, 0, 0.5)", 
+    fig.add_hline(y=30, line_dash="dash", line_color="rgba(255, 0, 0, 0.5)",
                   annotation_text="High Wind", annotation_position="right")
-    
+
     fig.update_layout(
         xaxis_title="Date",
         yaxis_title="Wind Speed (mph)",
-        height=250,
+        height=250 if compare_data is None else 300,
         margin=dict(t=10, b=40, l=40, r=40),
         legend=dict(
             orientation="h",
@@ -221,64 +328,98 @@ def get_resort_wind(data):
             y=1.02,
             xanchor="right",
             x=1
-        )
+        ),
+        hovermode='x unified'
     )
-    
+
     st.plotly_chart(fig)
 
 
-def get_resort_cumulative_snowfall(data):
+def get_resort_cumulative_snowfall(data, compare_data=None, primary_name="Primary", compare_name="Compare"):
     if data is None or data.empty:
         st.error("No data available to display cumulative snowfall.")
         return
 
     st.write("###### Cumulative Snowfall")
-    
-    # Calculate cumulative sum
+
+    # Calculate cumulative sum for primary
     cumulative_snow = data[COL_SNOWFALL].cumsum()
-    
+    total_snow = cumulative_snow.iloc[-1]
+
     fig = go.Figure()
-    
+
     fig.add_trace(go.Scatter(
         x=data[COL_DATE],
         y=cumulative_snow,
-        name="Cumulative Snowfall",
-        line=dict(color='#2ca02c'),
-        fill='tozeroy'
+        name=primary_name if compare_data is not None else "Cumulative Snowfall",
+        line=dict(color=PRIMARY_COLOR_ALT),
+        fill='tozeroy' if compare_data is None else None
     ))
-    
-    # Show total at the end
-    total_snow = cumulative_snow.iloc[-1]
-    
+
+    # Comparison resort data
+    compare_total = None
+    if compare_data is not None and not compare_data.empty:
+        compare_cumulative = compare_data[COL_SNOWFALL].cumsum()
+        compare_total = compare_cumulative.iloc[-1]
+
+        fig.add_trace(go.Scatter(
+            x=compare_data[COL_DATE],
+            y=compare_cumulative,
+            name=compare_name,
+            line=dict(color=COMPARE_COLOR, dash='dash')
+        ))
+
     fig.update_layout(
         xaxis_title="Date",
         yaxis_title="Total Snowfall (in)",
         height=250,
-        showlegend=False,
-        margin=dict(t=10, b=40, l=40, r=40)
+        showlegend=compare_data is not None,
+        margin=dict(t=10, b=40, l=40, r=40),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        hovermode='x unified'
     )
-    
+
     st.plotly_chart(fig)
-    st.caption(f"Total snowfall: {total_snow:.1f} inches")
+
+    if compare_data is not None and compare_total is not None:
+        st.caption(f"Total: {primary_name}: {total_snow:.1f}\" | {compare_name}: {compare_total:.1f}\"")
+    else:
+        st.caption(f"Total snowfall: {total_snow:.1f} inches")
 
 
-def get_resort_pressure(data):
+def get_resort_pressure(data, compare_data=None, primary_name="Primary", compare_name="Compare"):
     if data is None or data.empty:
         st.error("No data available to display pressure.")
         return
-    
+
     st.write("###### Daily Pressure")
-    
+
     fig = go.Figure()
-    
+
     fig.add_trace(go.Scatter(
         x=data[COL_DATE],
         y=data[COL_PRESSURE],
         mode='lines',
-        name='Pressure',
-        line=dict(color='#1f77b4')
+        name=primary_name if compare_data is not None else 'Pressure',
+        line=dict(color=PRIMARY_COLOR)
     ))
-    
+
+    # Comparison resort data
+    if compare_data is not None and not compare_data.empty:
+        fig.add_trace(go.Scatter(
+            x=compare_data[COL_DATE],
+            y=compare_data[COL_PRESSURE],
+            mode='lines',
+            name=compare_name,
+            line=dict(color=COMPARE_COLOR, dash='dash')
+        ))
+
     fig.update_layout(
         xaxis_title="Date",
         yaxis_title="Pressure (mb)",
@@ -286,10 +427,18 @@ def get_resort_pressure(data):
         yaxis=dict(
             rangemode='normal'
         ),
-        showlegend=False,
-        margin=dict(t=10, b=40, l=40, r=40)
+        showlegend=compare_data is not None,
+        margin=dict(t=10, b=40, l=40, r=40),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ),
+        hovermode='x unified'
     )
-    
+
     st.plotly_chart(fig)
 
 def get_resort_snowfall_vs_pressure(data):

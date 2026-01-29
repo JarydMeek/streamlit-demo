@@ -3,7 +3,11 @@ import requests
 import pandas as pd
 import os
 import json
-from v2_constants import RESORT_SELECTOR_STATE_KEY, COL_DATE, COL_TEMP_MAX, COL_TEMP_MIN, COL_TEMP_MEAN, COL_PRECIPITATION, COL_SNOWFALL, COL_SNOW_DEPTH, COL_WIND_SPEED_MAX, COL_WIND_GUSTS_MAX, COL_PRESSURE
+from v2_constants import (
+    RESORT_SELECTOR_STATE_KEY, COMPARE_RESORT_SELECTOR_STATE_KEY, COMPARE_COUNTRY_SELECTOR_STATE_KEY,
+    COL_DATE, COL_TEMP_MAX, COL_TEMP_MIN, COL_TEMP_MEAN, COL_PRECIPITATION, COL_SNOWFALL,
+    COL_SNOW_DEPTH, COL_WIND_SPEED_MAX, COL_WIND_GUSTS_MAX, COL_PRESSURE
+)
 
 @st.cache_data(ttl=86400)
 def fetch_resorts():
@@ -84,7 +88,7 @@ def fetch_historical_data_for_current_resort(start_date, end_date):
     if RESORT_SELECTOR_STATE_KEY not in st.session_state:
         st.error("No resort selected.")
         return None
-    
+
     resorts = fetch_resorts()
     selected_resort_name = st.session_state[RESORT_SELECTOR_STATE_KEY]
     selected_resort = next((resort for resort in resorts if resort.get("name") == selected_resort_name), None)
@@ -93,9 +97,33 @@ def fetch_historical_data_for_current_resort(start_date, end_date):
         return None
     lat = selected_resort.get("lat", None)
     lng = selected_resort.get("lng", None)
-    
+
     if lat is None or lng is None:
         st.error("Resort does not have valid latitude/longitude.")
         return None
-    
+
+    return fetch_historical_weather(lat, lng, start_date, end_date)
+
+
+def fetch_historical_data_for_comparison_resort(start_date, end_date):
+    """Fetch weather data for the comparison resort, if one is selected."""
+    compare_country = st.session_state.get(COMPARE_COUNTRY_SELECTOR_STATE_KEY, None)
+    if not compare_country or compare_country == "None":
+        return None
+
+    compare_resort_name = st.session_state.get(COMPARE_RESORT_SELECTOR_STATE_KEY, None)
+    if not compare_resort_name:
+        return None
+
+    resorts = fetch_resorts()
+    compare_resort = next((resort for resort in resorts if resort.get("name") == compare_resort_name), None)
+    if not compare_resort:
+        return None
+
+    lat = compare_resort.get("lat", None)
+    lng = compare_resort.get("lng", None)
+
+    if lat is None or lng is None:
+        return None
+
     return fetch_historical_weather(lat, lng, start_date, end_date)
